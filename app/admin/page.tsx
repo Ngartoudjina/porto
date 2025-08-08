@@ -1070,7 +1070,7 @@ export default function AdminDashboard() {
                     <div className="mt-2">
                       <p className="text-xs text-gray-500">Vidéo actuelle :</p>
                       <AdvancedVideo
-                        cldVid={cld.video(mediaForm.src).resize(fill().width(100).height(67)).quality(auto()).format(autoFormat())}
+                        cldVid={cld.video(mediaForm.src).resize(fill().width(100).height(67)).quality(auto()).format('auto')}
                         controls
                         className="mt-2 rounded-lg"
                         aria-label="Aperçu de la vidéo"
