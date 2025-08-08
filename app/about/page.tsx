@@ -6,6 +6,7 @@ import ServicesSection from '@/components/ServicesSection';
 import AboutMeSection from '@/components/AboutMeSection';
 import ToolsShowcase from '@/components/ToolsShowcase';
 import PortfolioShowcase from '@/components/PortfolioShowcase';
+import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import AcademicProfessionalJourney from '@/components/AcademicProfessionalJourney';
 
 export default function AboutPage() {
