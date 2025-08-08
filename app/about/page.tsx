@@ -111,30 +111,14 @@ export default function AboutPage() {
         <motion.div
           className="absolute top-20 right-20 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-xl"
           style={{ y: y1 }}
-          animate={{
-            y: [-10, 10, -10],
-            x: [-5, 5, -5],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          animate={floatingAnimation1}
+          transition={floatingTransition1}
         />
         <motion.div
           className="absolute bottom-40 left-10 w-32 h-32 bg-gradient-to-br from-indigo-400/20 to-purple-400/20 rounded-full blur-xl"
           style={{ y: y2 }}
-          animate={{
-            y: [-10, 10, -10],
-            x: [-5, 5, -5],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          animate={floatingAnimation1}
+          transition={floatingTransition1}
         />
         <motion.div
           className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-full blur-lg"
@@ -145,7 +129,7 @@ export default function AboutPage() {
           transition={{ 
             duration: 4, 
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut" as const
           }}
         />
 
@@ -346,7 +330,7 @@ export default function AboutPage() {
                     transition={{
                       duration: 3 + index,
                       repeat: Infinity,
-                      ease: 'easeInOut',
+                      ease: 'easeInOut' as const,
                       delay: element.delay,
                     }}
                   />
@@ -410,13 +394,13 @@ export default function AboutPage() {
           <motion.div
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" as const }}
           >
             <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
               <motion.div
                 className="w-1 h-3 bg-gray-400 rounded-full mt-2"
                 animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" as const }}
               />
             </div>
           </motion.div>
