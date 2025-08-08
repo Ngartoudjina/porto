@@ -17,8 +17,20 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    // Ajouts recommandés pour Framer Motion et meilleure expérience TS
+    "types": ["node", "jest", "framer-motion"],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts" // Ajout recommandé par Next.js
+  ],
   "exclude": ["node_modules"]
 }

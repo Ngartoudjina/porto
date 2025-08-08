@@ -13,4 +13,13 @@ const nextConfig = {
      },
    };
 
+   module.exports = {
+  experimental: {
+    swcMinify: true,
+    // Activer le cache persistant
+    swcFileReading: false,
+    workerThreads: true,
+  },
+}
+
 export default nextConfig;

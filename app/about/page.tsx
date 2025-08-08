@@ -47,17 +47,17 @@ export default function AboutPage() {
      };
 
      const floatingVariants = {
-      animate: {
-        y: [-10, 10, -10],
-        x: [-5, 5, -5],
-        rotate: [0, 180, 360],
-        transition: {
-          duration: 6,
-          repeat: 999, // Use a large number instead of Infinity
-          ease: 'easeInOut',
-        },
-      },
-    };
+  animate: {
+    y: [-10, 10, -10],
+    x: [-5, 5, -5],
+    rotate: [0, 180, 360],
+    transition: {
+      duration: 6,
+      repeat: 999,
+      ease: "easeInOut" as const, // Solution type-safe
+    },
+  },
+};
 
      const features = [
        {
