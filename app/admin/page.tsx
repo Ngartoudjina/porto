@@ -309,13 +309,13 @@ export default function AdminDashboard() {
 
     console.log("Sending request to server...");
     console.log("FormData contents:");
-    for (const [key, value] of formData.entries()) {
+    Array.from(formData.entries()).forEach(([key, value]) => {
       if (value instanceof File) {
         console.log(`${key}: File(${value.name}, ${value.type}, ${value.size} bytes)`);
       } else {
         console.log(`${key}: ${value}`);
       }
-    }
+    });
 
     // Envoi de la requête
     const url = editingId ? "/api/media" : "/api/media";
