@@ -64,19 +64,6 @@ export default function AboutPage() {
     },
   };
 
-  const floatingVariants = {
-    animate: {
-      y: [-10, 10, -10],
-      x: [-5, 5, -5],
-      rotate: [0, 180, 360],
-      transition: {
-        duration: 6,
-        repeat: Infinity, // Use Infinity instead of 999 for better semantics
-        ease: 'easeInOut',
-      },
-    },
-  };
-
   const features: Feature[] = [
     {
       icon: Lightbulb,
@@ -120,26 +107,45 @@ export default function AboutPage() {
           />
         </div>
 
-        {/* Enhanced Floating Elements */}
+        {/* Enhanced Floating Elements - Fixed */}
         <motion.div
           className="absolute top-20 right-20 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-xl"
           style={{ y: y1 }}
-          variants={floatingVariants}
-          animate="animate"
+          animate={{
+            y: [-10, 10, -10],
+            x: [-5, 5, -5],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
         <motion.div
           className="absolute bottom-40 left-10 w-32 h-32 bg-gradient-to-br from-indigo-400/20 to-purple-400/20 rounded-full blur-xl"
           style={{ y: y2 }}
-          variants={floatingVariants}
-          animate="animate"
-          // Removed redundant transition prop since it's defined in variants
+          animate={{
+            y: [-10, 10, -10],
+            x: [-5, 5, -5],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
         <motion.div
           className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-full blur-lg"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.6, 0.3],
-            transition: { duration: 4, repeat: Infinity },
+          }}
+          transition={{ 
+            duration: 4, 
+            repeat: Infinity,
+            ease: "easeInOut"
           }}
         />
 
@@ -183,7 +189,7 @@ export default function AboutPage() {
                 <motion.div className="flex flex-wrap gap-3" variants={itemVariants}>
                   {skills.map((skill, index) => (
                     <motion.span
-                      key={skill} // Use skill as key for uniqueness
+                      key={skill}
                       className="px-4 py-2 bg-white/70 backdrop-blur-sm border border-blue-200/50 rounded-full text-sm font-medium text-gray-700 shadow-sm"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -226,7 +232,7 @@ export default function AboutPage() {
                     { number: '3+', label: 'Années d\'Expertise' },
                   ] as Stat[]).map((stat, index) => (
                     <motion.div
-                      key={stat.label} // Use label as key for uniqueness
+                      key={stat.label}
                       className="text-center"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -377,7 +383,7 @@ export default function AboutPage() {
               >
                 {features.map((feature, index) => (
                   <motion.div
-                    key={feature.title} // Use title as key for uniqueness
+                    key={feature.title}
                     className="group relative p-8 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300"
                     variants={itemVariants}
                     whileHover={{ y: -10, scale: 1.02 }}
