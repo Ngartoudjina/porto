@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Thermometer, Monitor, Settings, Smartphone, Home, Lightbulb, Users, Eye, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
+
 // Interface for API experience data
 interface Experience {
   id: string;
