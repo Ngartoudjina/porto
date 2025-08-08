@@ -181,8 +181,11 @@ export default function AdminDashboard() {
       setProjectForm({ title: '', description: '', image: null, softwares: [] });
       setEditingId(null);
     } catch (error) {
-      toast.error(error.message || 'Échec de l\'opération');
-      console.error(error);
+      if (error instanceof Error) {
+        toast.error(error.message || "Échec de l'enregistrement de l'expérience");
+      } else {
+        toast.error("Échec de l'enregistrement de l'expérience");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -227,7 +230,11 @@ export default function AdminDashboard() {
       }
       setExperienceForm({ name: "", subject: "", image: "", verified: false });
     } catch (error) {
-      toast.error(error.message || "Échec de l'enregistrement de l'expérience");
+      if (error instanceof Error) {
+        toast.error(error.message || "Échec de l'enregistrement de l'expérience");
+      } else {
+        toast.error("Échec de l'enregistrement de l'expérience");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -365,22 +372,11 @@ export default function AdminDashboard() {
     });
 
   } catch (error) {
-    console.error("Upload error:", error);
-    
-    let errorMessage = "Échec de l'enregistrement du média";
-    
     if (error instanceof Error) {
-      errorMessage = error.message;
+      toast.error(error.message || "Échec de l'enregistrement de l'expérience");
+    } else {
+      toast.error("Échec de l'enregistrement de l'expérience");
     }
-    
-    // Messages d'erreur spécifiques
-    if (errorMessage.includes('timeout') || errorMessage.includes('Timeout')) {
-      errorMessage = "Le téléversement a pris trop de temps. Essayez avec un fichier plus petit.";
-    } else if (errorMessage.includes('Network') || errorMessage.includes('fetch')) {
-      errorMessage = "Erreur de réseau. Vérifiez votre connexion internet.";
-    }
-    
-    toast.error(errorMessage);
   } finally {
     setIsLoading(false);
   }
@@ -426,7 +422,11 @@ export default function AdminDashboard() {
       }
       setVitaeForm({ name: "", file: "" });
     } catch (error) {
-      toast.error(error.message || "Échec de l'enregistrement du CV");
+      if (error instanceof Error) {
+        toast.error(error.message || "Échec de l'enregistrement de l'expérience");
+      } else {
+        toast.error("Échec de l'enregistrement de l'expérience");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -468,7 +468,11 @@ export default function AdminDashboard() {
       }
       setEmailForm({ email: "" });
     } catch (error) {
-      toast.error(error.message || "Échec de l'enregistrement de l'email");
+      if (error instanceof Error) {
+        toast.error(error.message || "Échec de l'enregistrement de l'expérience");
+      } else {
+        toast.error("Échec de l'enregistrement de l'expérience");
+      }
     } finally {
       setIsLoading(false);
     }
