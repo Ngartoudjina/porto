@@ -64,6 +64,19 @@ export default function AboutPage() {
     },
   };
 
+  const floatingVariants = {
+    animate: {
+      y: [-10, 10, -10],
+      x: [-5, 5, -5],
+      rotate: [0, 180, 360],
+      transition: {
+        duration: 6,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      },
+    },
+  };
+
   const features: Feature[] = [
     {
       icon: Lightbulb,
@@ -111,14 +124,14 @@ export default function AboutPage() {
         <motion.div
           className="absolute top-20 right-20 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-xl"
           style={{ y: y1 }}
-          animate={floatingAnimation1}
-          transition={floatingTransition1}
+          variants={floatingVariants}
+          animate="animate"
         />
         <motion.div
           className="absolute bottom-40 left-10 w-32 h-32 bg-gradient-to-br from-indigo-400/20 to-purple-400/20 rounded-full blur-xl"
           style={{ y: y2 }}
-          animate={floatingAnimation1}
-          transition={floatingTransition1}
+          variants={floatingVariants}
+          animate="animate"
         />
         <motion.div
           className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-full blur-lg"
@@ -126,10 +139,10 @@ export default function AboutPage() {
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.6, 0.3],
           }}
-          transition={{ 
-            duration: 4, 
+          transition={{
+            duration: 4,
             repeat: Infinity,
-            ease: "easeInOut" as const
+            ease: 'easeInOut',
           }}
         />
 
@@ -171,13 +184,13 @@ export default function AboutPage() {
 
                 {/* Skills Tags */}
                 <motion.div className="flex flex-wrap gap-3" variants={itemVariants}>
-                  {skills.map((skill, index) => (
+                  {skills.map((skill) => (
                     <motion.span
                       key={skill}
                       className="px-4 py-2 bg-white/70 backdrop-blur-sm border border-blue-200/50 rounded-full text-sm font-medium text-gray-700 shadow-sm"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.8 + index * 0.1 }}
+                      transition={{ delay: 0.8 + skills.indexOf(skill) * 0.1 }}
                       whileHover={{ scale: 1.05, backgroundColor: 'rgba(59, 130, 246, 0.1)' }}
                     >
                       {skill}
@@ -214,13 +227,13 @@ export default function AboutPage() {
                     { number: '5+', label: 'Projets Réussis' },
                     { number: '100%', label: 'Satisfaction Client' },
                     { number: '3+', label: 'Années d\'Expertise' },
-                  ] as Stat[]).map((stat, index) => (
+                  ] as Stat[]).map((stat) => (
                     <motion.div
                       key={stat.label}
                       className="text-center"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1.2 + index * 0.1 }}
+                      transition={{ delay: 1.2 + stat.label.charCodeAt(0) * 0.01 }}
                     >
                       <div className="text-2xl font-bold text-gray-900">{stat.number}</div>
                       <div className="text-sm text-gray-600">{stat.label}</div>
@@ -317,7 +330,7 @@ export default function AboutPage() {
                 {([
                   { size: 'w-16 h-16', color: 'from-blue-400/30 to-cyan-400/30', position: 'top-8 -left-8', delay: 0 },
                   { size: 'w-12 h-12', color: 'from-purple-400/30 to-pink-400/30', position: '-top-6 right-20', delay: 0.5 },
-                  { size: 'w-10 h-10', color: 'from-emerald-400/30 to-teal-400/30', position: 'top-1/3 -left-4', delay: 1 },
+                  { size: 'w-10 h-10', color: 'from-emerald歐式/30 to-teal-400/30', position: 'top-1/3 -left-4', delay: 1 },
                 ]).map((element, index) => (
                   <motion.div
                     key={index}
@@ -330,7 +343,7 @@ export default function AboutPage() {
                     transition={{
                       duration: 3 + index,
                       repeat: Infinity,
-                      ease: 'easeInOut' as const,
+                      ease: 'easeInOut',
                       delay: element.delay,
                     }}
                   />
@@ -365,7 +378,7 @@ export default function AboutPage() {
                 initial="hidden"
                 animate="visible"
               >
-                {features.map((feature, index) => (
+                {features.map((feature) => (
                   <motion.div
                     key={feature.title}
                     className="group relative p-8 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300"
@@ -394,13 +407,13 @@ export default function AboutPage() {
           <motion.div
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" as const }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           >
             <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
               <motion.div
                 className="w-1 h-3 bg-gray-400 rounded-full mt-2"
                 animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" as const }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
               />
             </div>
           </motion.div>
