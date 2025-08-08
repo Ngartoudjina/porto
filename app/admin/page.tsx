@@ -578,7 +578,12 @@ export default function AdminDashboard() {
         toast.success("Message supprimé avec succès");
       }
     } catch (error) {
-      toast.error(error.message || `Échec de la suppression de ${deleteConfirm.type}`);
+      if (error instanceof Error) {
+        toast.error(error.message || `Échec de la suppression de ${deleteConfirm?.type}`);
+      } else {
+        toast.error(`Échec de la suppression de ${deleteConfirm?.type}`);
+      }
+      console.error(error);
     } finally {
       setIsLoading(false);
       setDeleteConfirm(null);
