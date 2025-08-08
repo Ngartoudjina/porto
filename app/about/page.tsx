@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import { ArrowRight, Calendar, Heart, Star, Zap, Users, Award, Lightbulb, Target, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import ServicesSection from '@/components/ServicesSection';
@@ -41,7 +41,7 @@ export default function AboutPage() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -52,7 +52,7 @@ export default function AboutPage() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -64,7 +64,7 @@ export default function AboutPage() {
     },
   };
 
-  const floatingVariants = {
+  const floatingVariants: Variants = {
     animate: {
       y: [-10, 10, -10],
       x: [-5, 5, -5],
@@ -72,7 +72,7 @@ export default function AboutPage() {
       transition: {
         duration: 6,
         repeat: Infinity,
-        ease: 'easeInOut',
+        ease: "easeInOut",
       },
     },
   };
@@ -142,7 +142,7 @@ export default function AboutPage() {
           transition={{
             duration: 4,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
 
@@ -330,7 +330,7 @@ export default function AboutPage() {
                 {([
                   { size: 'w-16 h-16', color: 'from-blue-400/30 to-cyan-400/30', position: 'top-8 -left-8', delay: 0 },
                   { size: 'w-12 h-12', color: 'from-purple-400/30 to-pink-400/30', position: '-top-6 right-20', delay: 0.5 },
-                  { size: 'w-10 h-10', color: 'from-emerald歐式/30 to-teal-400/30', position: 'top-1/3 -left-4', delay: 1 },
+                  { size: 'w-10 h-10', color: 'from-emerald-400/30 to-teal-400/30', position: 'top-1/3 -left-4', delay: 1 },
                 ]).map((element, index) => (
                   <motion.div
                     key={index}
@@ -343,7 +343,7 @@ export default function AboutPage() {
                     transition={{
                       duration: 3 + index,
                       repeat: Infinity,
-                      ease: 'easeInOut',
+                      ease: "easeInOut",
                       delay: element.delay,
                     }}
                   />
@@ -407,13 +407,13 @@ export default function AboutPage() {
           <motion.div
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
             <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
               <motion.div
                 className="w-1 h-3 bg-gray-400 rounded-full mt-2"
                 animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               />
             </div>
           </motion.div>
