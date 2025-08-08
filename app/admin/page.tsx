@@ -10,6 +10,7 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import { fill } from "@cloudinary/url-gen/actions/resize";
 import { auto } from "@cloudinary/url-gen/qualifiers/quality";
 import { auto as autoFormat } from "@cloudinary/url-gen/qualifiers/format";
+import { format } from "@cloudinary/url-gen/actions/delivery";
 import { Project, Experience, Media, Vitae } from "@/lib/types";
 
 interface Email {
@@ -1070,11 +1071,13 @@ export default function AdminDashboard() {
                     <div className="mt-2">
                       <p className="text-xs text-gray-500">Vidéo actuelle :</p>
                       <AdvancedVideo
-                        cldVid={cld.video(mediaForm.src).resize(fill().width(100).height(67)).quality(auto()).format('auto')}
+                        cldVid={cld.video(mediaForm.src)
+                          .resize(fill().width(100).height(67))
+                          .quality(auto())
+                          .delivery(format('auto'))}  // Modifié ici
                         controls
                         className="mt-2 rounded-lg"
                         aria-label="Aperçu de la vidéo"
-                        onError={() => toast.error("Erreur de chargement de la vidéo")}
                       />
                     </div>
                   )}
@@ -1148,7 +1151,10 @@ export default function AdminDashboard() {
                     <div className="flex items-center space-x-3">
                       {mediaItem.src && (
                         <AdvancedVideo
-                          cldVid={cld.video(mediaItem.src).resize(fill().width(48).height(48)).quality(auto()).format(autoFormat())}
+                          cldVid={cld.video(mediaItem.src)
+                            .resize(fill().width(48).height(48))
+                            .quality(auto())
+                            .delivery(format('auto'))}  // Modifié ici
                           className="object-cover rounded-lg"
                           aria-label={mediaItem.title}
                           onError={() => toast.error(`Erreur de chargement de la vidéo pour ${mediaItem.title}`)}
