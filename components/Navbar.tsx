@@ -373,7 +373,7 @@ export default function Navbar() {
               initial="closed"
               animate="open"
               exit="closed"
-              className="lg:hidden fixed top-16 sm:top-20 right-0 w-5/6 max-w-sm bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/50 backdrop-blur-2xl shadow-2xl border-l border-blue-200/50 rounded-l-3xl overflow-hidden"
+              className="lg:hidden fixed top-16 sm:top-20 right-0 w-5/6 max-w-sm bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/80 backdrop-blur-2xl shadow-2xl border-l border-blue-200/50 rounded-l-3xl overflow-hidden"
             >
               {/* Close button for mobile */}
               <div className="absolute top-4 right-4">
