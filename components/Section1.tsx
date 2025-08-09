@@ -40,33 +40,33 @@ export default function Section1() {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) {
-      toast.error("Please enter an email address");
-      return;
+  e.preventDefault();
+  if (!email) {
+    toast.error("Please enter an email address");
+    return;
+  }
+
+  setIsLoading(true);
+  try {
+    const response = await fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error || "Failed to subscribe");
     }
 
-    setIsLoading(true);
-    try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to subscribe");
-      }
-
-      toast.success(`Thank you! You'll receive updates at ${email}`);
-      setEmail('');
-    } catch (error) {
-      toast.error(error.message || "Failed to subscribe");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    toast.success(`Thank you! You'll receive updates at ${email}`);
+    setEmail('');
+  } catch (error: unknown) {
+    toast.error(error instanceof Error ? error.message : "Failed to subscribe");
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
