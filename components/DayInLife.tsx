@@ -109,7 +109,7 @@ export default function DayInLife() {
             <motion.div
               key={activity.name}
               variants={itemVariants}
-              whileHover={hoverVariants}
+              whileHover={hover}
               className="group cursor-pointer"
               aria-label={`Temps consacré à ${activity.name}`}
             >
