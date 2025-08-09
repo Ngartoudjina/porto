@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Zap, Factory, Thermometer, Flame, Battery, Wind } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -23,12 +23,16 @@ export default function AboutMeSection() {
   ];
 
   // Animation variants
-  const sectionVariants = {
+  const sectionVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.2 },
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut",
+        staggerChildren: 0.2 
+      },
     },
   };
 
