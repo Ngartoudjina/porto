@@ -4,6 +4,8 @@ export interface Project {
   description: string;
   image?: string;
   softwares: string[];
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Experience {

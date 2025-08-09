@@ -27,19 +27,24 @@ export async function GET() {
   try {
     const projectsCol = collection(db, "projects");
     const projectSnapshot = await getDocs(projectsCol);
-    const projects = projectSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-      softwares: doc.data().softwares || [], // Assurer la rétrocompatibilité
-      createdAt: doc.data().createdAt?.toDate?.()
-        ? doc.data().createdAt.toDate().toISOString()
-        : doc.data().createdAt || null,
-      updatedAt: doc.data().updatedAt?.toDate?.()
-        ? doc.data().updatedAt.toDate().toISOString()
-        : doc.data().updatedAt || null,
-    } as Project));
+    const projects = projectSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        title: data.title || '', // Valeur par défaut si manquant
+        description: data.description || '', // Valeur par défaut si manquant
+        image: data.image || undefined,
+        softwares: data.softwares || [], // Assurer la rétrocompatibilité
+        createdAt: data.createdAt?.toDate?.()
+          ? data.createdAt.toDate().toISOString()
+          : data.createdAt || undefined,
+        updatedAt: data.updatedAt?.toDate?.()
+          ? data.updatedAt.toDate().toISOString()
+          : data.updatedAt || undefined,
+      } as Project;
+    });
 
-    console.log("Projects fetched:", projects); // Journal pour débogage
+    console.log("Projects fetched:", projects);
     return NextResponse.json({ success: true, data: projects });
   } catch (error) {
     console.error("GET /api/projects error:", error);
