@@ -3,21 +3,29 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { CheckCircle, Eye, Play, Pause, VolumeX, Volume2, RotateCcw, Maximize } from 'lucide-react';
 
+type VideoId = 'video1' | 'video2';
+
 export default function MeetTeachersSection() {
-  const [hoveredCard, setHoveredCard] = useState(null);
-  const [hoveredVideo, setHoveredVideo] = useState(null);
-  const [playingVideo, setPlayingVideo] = useState(null);
-  const [mutedStates, setMutedStates] = useState({ video1: true, video2: true });
-  const [progress, setProgress] = useState({ video1: 0, video2: 0 });
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hoveredVideo, setHoveredVideo] = useState<VideoId | null>(null);
+  const [playingVideo, setPlayingVideo] = useState<VideoId | null>(null);
+  const [mutedStates, setMutedStates] = useState<Record<VideoId, boolean>>({ 
+    video1: true, 
+    video2: true 
+  });
+  const [progress, setProgress] = useState<Record<VideoId, number>>({ 
+    video1: 0, 
+    video2: 0 
+  });
 
   const videoRefs = {
-    video1: useRef(null),
-    video2: useRef(null),
+    video1: useRef<HTMLVideoElement>(null),
+    video2: useRef<HTMLVideoElement>(null),
   };
 
   const videos = [
     {
-      id: 'video1',
+      id: 'video1' as VideoId,
       src: '/tab1.mp4',
       title: 'Approche Pédagogique Innovante',
       description: 'Découvrez nos méthodes d\'enseignement modernes et interactives qui transforment l\'apprentissage en une expérience engageante.',
@@ -26,7 +34,7 @@ export default function MeetTeachersSection() {
       views: '1.2k',
     },
     {
-      id: 'video2',
+      id: 'video2' as VideoId,
       src: '/tab2.mp4',
       title: 'Excellence Académique',
       description: 'Plongez dans l\'univers de nos programmes académiques d\'excellence qui préparent nos étudiants aux défis de demain.',
@@ -36,13 +44,13 @@ export default function MeetTeachersSection() {
     },
   ];
 
-  const togglePlay = (videoId) => {
+  const togglePlay = (videoId: VideoId) => {
     const video = videoRefs[videoId].current;
     if (video) {
       if (video.paused) {
         Object.keys(videoRefs).forEach((id) => {
-          if (id !== videoId && videoRefs[id].current) {
-            videoRefs[id].current.pause();
+          if (id !== videoId && videoRefs[id as VideoId].current) {
+            videoRefs[id as VideoId].current?.pause();
           }
         });
         video.play().catch((error) => console.error('Video play failed:', error));
@@ -54,7 +62,7 @@ export default function MeetTeachersSection() {
     }
   };
 
-  const toggleMute = (videoId) => {
+  const toggleMute = (videoId: VideoId) => {
     const video = videoRefs[videoId].current;
     if (video) {
       video.muted = !video.muted;
@@ -65,7 +73,7 @@ export default function MeetTeachersSection() {
     }
   };
 
-  const resetVideo = (videoId) => {
+  const resetVideo = (videoId: VideoId) => {
     const video = videoRefs[videoId].current;
     if (video) {
       video.currentTime = 0;
@@ -73,7 +81,7 @@ export default function MeetTeachersSection() {
     }
   };
 
-  const toggleFullscreen = (videoId) => {
+  const toggleFullscreen = (videoId: VideoId) => {
     const video = videoRefs[videoId].current;
     if (video) {
       if (!document.fullscreenElement) {
@@ -85,7 +93,7 @@ export default function MeetTeachersSection() {
   };
 
   useEffect(() => {
-    const updateProgress = (videoId) => {
+    const updateProgress = (videoId: VideoId) => {
       const video = videoRefs[videoId].current;
       if (video && video.duration) {
         const progressPercent = (video.currentTime / video.duration) * 100;
@@ -93,16 +101,16 @@ export default function MeetTeachersSection() {
       }
     };
 
-    const handleError = (videoId) => {
+    const handleError = (videoId: VideoId) => {
       console.error(`Failed to load video: ${videoId}`);
     };
 
     const cleanup = Object.keys(videoRefs).map((videoId) => {
-      const video = videoRefs[videoId].current;
+      const video = videoRefs[videoId as VideoId].current;
       if (video) {
-        const handleTimeUpdate = () => updateProgress(videoId);
+        const handleTimeUpdate = () => updateProgress(videoId as VideoId);
         const handleEnded = () => setPlayingVideo(null);
-        const handleErrorEvent = () => handleError(videoId);
+        const handleErrorEvent = () => handleError(videoId as VideoId);
 
         video.addEventListener('timeupdate', handleTimeUpdate);
         video.addEventListener('ended', handleEnded);
