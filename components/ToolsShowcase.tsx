@@ -140,7 +140,7 @@ export default function ToolsShowcase() {
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: [0.42, 0, 0.58, 1],
       },
     },
   };
@@ -151,7 +151,7 @@ export default function ToolsShowcase() {
     boxShadow: '0 10px 20px rgba(37, 99, 235, 0.2)',
     transition: {
       duration: 0.2,
-      ease: 'easeOut',
+      ease: [0.42, 0, 0.58, 1],
     },
   };
 

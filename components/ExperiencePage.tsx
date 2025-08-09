@@ -53,7 +53,7 @@ export default function ExperiencePage() {
     scale: 1,
     transition: {
       duration: 0.6,
-      ease: "easeOut" // Utilisation d'une chaîne prédéfinie
+      ease: [0.42, 0, 0.58, 1] // Utilisation d'une chaîne prédéfinie
     },
   },
 };
@@ -65,7 +65,7 @@ const cardHoverVariants: Variants = {
     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
     transition: {
       duration: 0.3,
-      ease: "easeOut"
+      ease: [0.42, 0, 0.58, 1]
     },
   },
 };
@@ -75,7 +75,7 @@ const imageVariants: Variants = {
     scale: 1.05,
     transition: {
       duration: 0.4,
-      ease: "easeOut"
+      ease: [0.42, 0, 0.58, 1]
     },
   },
 };

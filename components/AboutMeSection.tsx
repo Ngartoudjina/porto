@@ -30,7 +30,7 @@ export default function SectionÀPropos() {
       y: 0,
       transition: { 
         duration: 0.8, 
-        ease: "easeOut",
+        ease: [0.42, 0, 0.58, 1],
         staggerChildren: 0.2 
       },
     },

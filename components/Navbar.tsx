@@ -207,7 +207,7 @@ export default function Navbar() {
     transition: { 
       duration: i === 1 ? 0.2 : 0.3, 
       delay: i === 1 ? 0.1 : 0,
-      ease: i === 1 ? "easeOut" : [0.23, 1, 0.320, 1] 
+      ease: i === 1 ? [0.42, 0, 0.58, 1] : [0.23, 1, 0.320, 1] 
     }
   })
 };

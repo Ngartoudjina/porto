@@ -203,14 +203,14 @@ export function AdminButton() {
       width: 56,
       transition: { 
         duration: 0.3,
-        ease: "easeInOut"
+        ease: [0.42, 0, 0.58, 1]
       }
     },
     expanded: { 
       width: 140,
       transition: { 
         duration: 0.3,
-        ease: "easeInOut"
+        ease: [0.42, 0, 0.58, 1]
       }
     }
   };

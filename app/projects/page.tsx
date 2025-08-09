@@ -78,7 +78,7 @@ export default function Projects() {
       boxShadow: '0 25px 50px rgba(37, 99, 235, 0.25)',
       transition: {
         duration: 0.4,
-        ease: "easeOut" as const,
+        ease: [0.42, 0, 0.58, 1] as const,
       },
     },
   };
@@ -88,7 +88,7 @@ export default function Projects() {
       scale: 1.1,
       transition: {
         duration: 0.6,
-        ease: "easeOut" as const,
+        ease: [0.42, 0, 0.58, 1] as const,
       },
     },
   };
@@ -100,7 +100,7 @@ export default function Projects() {
       transition: {
         duration: 3,
         repeat: Infinity,
-        ease: "easeInOut" as const,
+        ease: [0.42, 0, 0.58, 1] as const,
       },
     },
   };
@@ -113,7 +113,7 @@ export default function Projects() {
       transition: {
         duration: 6,
         repeat: Infinity,
-        ease: "easeInOut" as const,
+        ease: [0.42, 0, 0.58, 1] as const,
       },
     },
   };
