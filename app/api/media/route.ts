@@ -374,9 +374,11 @@ export async function POST(request: Request) {
     
     let errorMessage = "Échec du téléversement de la vidéo";
     let statusCode = 500;
+    let errorDetails = '';
     
     if (error instanceof Error) {
       const errorMsg = error.message.toLowerCase();
+      errorDetails = error.message;
       
       if (errorMsg.includes('timeout')) {
         errorMessage = "Timeout: Fichier trop volumineux ou connexion lente. Essayez avec un fichier plus petit.";
@@ -394,7 +396,7 @@ export async function POST(request: Request) {
     }
     
     return NextResponse.json(
-      { success: false, error: errorMessage, details: error.message }, 
+      { success: false, error: errorMessage, details: errorDetails }, 
       { status: statusCode }
     );
   }
@@ -505,8 +507,9 @@ export async function PUT(request: Request) {
   } catch (error) {
     if (apiTimeout) clearTimeout(apiTimeout);
     console.error("PUT /api/media error:", error);
+    const errorMessage = error instanceof Error ? error.message : "Erreur inconnue";
     return NextResponse.json(
-      { success: false, error: "Échec de la mise à jour de la vidéo" }, 
+      { success: false, error: "Échec de la mise à jour de la vidéo", details: errorMessage }, 
       { status: 500 }
     );
   }
@@ -547,8 +550,9 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ success: true, message: "Vidéo supprimée avec succès" });
   } catch (error) {
     console.error("DELETE /api/media error:", error);
+    const errorMessage = error instanceof Error ? error.message : "Erreur inconnue";
     return NextResponse.json(
-      { success: false, error: "Échec de la suppression de la vidéo" }, 
+      { success: false, error: "Échec de la suppression de la vidéo", details: errorMessage }, 
       { status: 500 }
     );
   }

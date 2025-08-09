@@ -77,7 +77,7 @@ export default function Section1() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden px-4 sm:px-6 md:px-8 py-8">
+    <div className="min-h-screen relative overflow-hidden px-4 sm:px-6 md:px-8 py-24">
       <Toaster position="top-center" toastOptions={{ className: "text-sm" }} />
       <AnimatePresence mode="wait">
         <motion.div
