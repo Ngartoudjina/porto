@@ -343,7 +343,7 @@ export default function AboutPage() {
                     transition={{
                       duration: 3 + index,
                       repeat: Infinity,
-                      ease: ease: [0.42, 0, 0.58, 1],
+                      ease: [0.42, 0, 0.58, 1],
                       delay: element.delay,
                     }}
                   />
