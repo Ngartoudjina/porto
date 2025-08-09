@@ -167,28 +167,6 @@ export default function MeetTeachersSection() {
     <section className="py-16 px-4 bg-gray-50 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div
-          className="text-center mb-12"
-          style={{
-            animation: 'fadeInUp 0.8s ease-out',
-          }}
-        >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4 relative">
-            Meet With Our{' '}
-            <span className="text-orange-500 relative inline-block">
-              Teachers
-              <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-orange-500 transform scale-x-0 animate-pulse group-hover:scale-x-100 transition-transform duration-500"></div>
-            </span>
-          </h2>
-          <p
-            className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed"
-            style={{
-              animation: 'fadeInUp 0.8s ease-out 0.2s both',
-            }}
-          >
-            Our experienced educators are committed to providing you with quality education. Get to know working with our team.
-          </p>
-        </div>
 
         {/* Video Section */}
         <div
