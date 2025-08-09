@@ -74,7 +74,7 @@ export default function ClientTestimonials() {
   setCurrentIndex(index);
 };
 
-  const renderStars = (rating) => {
+  const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
