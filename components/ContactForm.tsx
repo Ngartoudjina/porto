@@ -119,8 +119,12 @@ export default function ContactForm() {
         message: ''
       });
     } catch (error) {
-      toast.error(error.message || "Failed to send message");
-    } finally {
+    let messageErreur = "Échec de l'envoi du message";
+    if (error instanceof Error) {
+      messageErreur = error.message;
+    }
+    toast.error(messageErreur);
+  } finally {
       setIsLoading(false);
     }
   };
