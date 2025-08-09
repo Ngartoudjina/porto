@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Phone, Mail, Globe, MapPin, Send, ChevronDown } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -8,8 +8,18 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import toast, { Toaster } from "react-hot-toast";
 
+type FormData = {
+  name: string;
+  email: string;
+  phone: string;
+  interest: string;
+  budget: string;
+  country: string;
+  message: string;
+};
+
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -44,7 +54,7 @@ export default function ContactForm() {
     },
   ];
 
-  const interestOptions = [
+  const interestOptions : = [
     "Renewable Energy Consulting",
     "Process Simulation",
     "Research Collaboration",
@@ -70,9 +80,9 @@ export default function ContactForm() {
     "Other",
   ];
 
-  const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
+  const handleInputChange = (field: keyof FormData, value: string) => {
+  setFormData(prev => ({ ...prev, [field]: value }));
+};
 
   const handleSubmit = async () => {
     if (!formData.name || !formData.email || !formData.phone || !formData.interest || !formData.budget || !formData.country || !formData.message) {
@@ -115,7 +125,7 @@ export default function ContactForm() {
     }
   };
 
-  const containerVariants = {
+  const containerVariants : Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -126,7 +136,7 @@ export default function ContactForm() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants : Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -138,7 +148,7 @@ export default function ContactForm() {
     },
   };
 
-  const formVariants = {
+  const formVariants : Variants = {
     hidden: { opacity: 0, x: 50 },
     visible: {
       opacity: 1,
