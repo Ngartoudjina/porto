@@ -77,14 +77,21 @@ export async function GET() {
     const vitaeCol = collection(db, "vitae");
     const vitaeSnapshot = await getDocs(vitaeCol);
     
-    const vitae = vitaeSnapshot.docs.map((docSnapshot) => ({
-      id: docSnapshot.id,
-      ...docSnapshot.data(),
-      // Handle both Timestamp and string dates
-      createdAt: docSnapshot.data().createdAt?.toDate ? 
-        docSnapshot.data().createdAt.toDate().toISOString() : 
-        docSnapshot.data().createdAt || null,
-    } as Vitae));
+    const vitae = vitaeSnapshot.docs.map((docSnapshot) => {
+      const data = docSnapshot.data();
+      return {
+        id: docSnapshot.id,
+        name: data.name || '', // Valeur par défaut si manquant
+        file: data.file || '', // Valeur par défaut si manquant
+        publicId: data.publicId || undefined,
+        createdAt: data.createdAt?.toDate ? 
+          data.createdAt.toDate().toISOString() : 
+          data.createdAt || undefined,
+        updatedAt: data.updatedAt?.toDate ? 
+          data.updatedAt.toDate().toISOString() : 
+          data.updatedAt || undefined,
+      } as Vitae;
+    });
     
     return NextResponse.json({ success: true, data: vitae });
   } catch (error) {

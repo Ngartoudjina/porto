@@ -37,5 +37,8 @@ export interface Media {
 export interface Vitae {
   id: string;
   name: string;
-  file: string; // URL to the CV PDF on Cloudinary
+  file: string;
+  publicId?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
