@@ -4,6 +4,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Briefcase, Calendar, Award } from 'lucide-react';
 
+interface TimelineItemData {
+  period: string;
+  institution?: string;
+  company?: string;
+  degree?: string;
+  position?: string;
+  icon: React.ReactNode;
+  color: string;
+}
+
+interface TimelineItemProps {
+  item: TimelineItemData;
+  index: number;
+  isEducation?: boolean;
+}
+
 export default function AcademicProfessionalJourney() {
   const educationData = [
     {
@@ -169,7 +185,7 @@ export default function AcademicProfessionalJourney() {
     },
   };
 
-  const TimelineItem = ({ item, index, isEducation = true }) => (
+  const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isEducation = true }) => (
     <motion.div
       variants={itemVariants}
       whileHover={{ scale: 1.02, x: 5, boxShadow: "0 8px 16px rgba(37, 99, 235, 0.2)" }}
@@ -229,7 +245,7 @@ export default function AcademicProfessionalJourney() {
         </motion.div>
       </motion.div>
     </motion.div>
-  );
+);
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 p-4 sm:p-6 md:p-8">
