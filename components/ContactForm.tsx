@@ -28,7 +28,7 @@ export default function ContactForm() {
     country: '',
     message: ''
   });
-  const [focusedField, setFocusedField] = useState(null);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const contactInfo = [
