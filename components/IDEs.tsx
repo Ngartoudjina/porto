@@ -121,7 +121,12 @@ export default function IDEs() {
             <motion.div
               key={ide.name}
               variants={itemVariants}
-              whileHover={hoverVariants}
+              whileHover={{
+                scale: 1.05,
+                y: -5,
+                boxShadow: '0 10px 20px rgba(37, 99, 235, 0.2)',
+                transition: { duration: 0.2 }
+              }}
               className="group cursor-pointer"
               aria-label={`Maîtrise de ${ide.name}`}
             >
