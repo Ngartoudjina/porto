@@ -5,10 +5,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
-const testimonials = [
+interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  rating: number;
+  text: string;
+  avatar: string;
+  initials: string;
+  bgColor: string;
+}
+
+const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Dr. Amina Okoro",
+    name: "Dr. Armand Noukpo",
     role: "Professor of Chemical Engineering",
     rating: 5.0,
     text: "André's work on solar energy system optimization was exceptional. His proficiency in MATLAB and attention to detail ensured accurate simulations, significantly contributing to our research group's findings.",
@@ -18,7 +29,7 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Engr. Tolu Adebayo",
+    name: "Engr. Tounde Kounde",
     role: "Renewable Energy Supervisor",
     rating: 4.8,
     text: "During his internship, André demonstrated strong skills in process simulation using Aspen Plus. His ability to model complex chemical processes was impressive and added value to our team.",
@@ -28,7 +39,7 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Dr. Chidi Eze",
+    name: "Dr. Jeremie ASSOGBA",
     role: "Research Collaborator",
     rating: 5.0,
     text: "André's contributions to our wind turbine design analysis were outstanding. His AutoCAD expertise and analytical approach helped refine our designs, exceeding project expectations.",
@@ -38,7 +49,7 @@ const testimonials = [
   },
   {
     id: 4,
-    name: "Mrs. Funmi Okafor",
+    name: "Mrs. Kemi Seba",
     role: "Industry Mentor",
     rating: 4.9,
     text: "André's thermodynamic modeling using COMSOL was meticulous and insightful. His dedication to research and collaborative spirit make him a valuable asset to any engineering project.",
@@ -59,9 +70,9 @@ export default function ClientTestimonials() {
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
-  const goToTestimonial = (index) => {
-    setCurrentIndex(index);
-  };
+  const goToTestimonial = (index: number) => {
+  setCurrentIndex(index);
+};
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
