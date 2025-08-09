@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Thermometer, Monitor, Settings, Smartphone, Home, Lightbulb, Users } from 'lucide-react';
@@ -41,44 +41,44 @@ export default function ExperiencePage() {
     },
   };
 
-  const itemVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 50,
-      scale: 0.9,
+  const itemVariants: Variants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50,
+    scale: 0.9,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut" // Utilisation d'une chaîne prédéfinie
     },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.25, 0.25, 0.75],
-      },
-    },
-  };
+  },
+};
 
-  const cardHoverVariants = {
-    hover: {
-      scale: 1.03,
-      y: -8,
-      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
-      transition: {
-        duration: 0.3,
-        ease: 'easeOut',
-      },
+const cardHoverVariants: Variants = {
+  hover: {
+    scale: 1.03,
+    y: -8,
+    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
     },
-  };
+  },
+};
 
-  const imageVariants = {
-    hover: {
-      scale: 1.05,
-      transition: {
-        duration: 0.4,
-        ease: 'easeOut',
-      },
+const imageVariants: Variants = {
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut"
     },
-  };
+  },
+};
 
   // Liste des icônes et styles pour les projets
   const projectStyles = [
