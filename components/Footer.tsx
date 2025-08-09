@@ -48,7 +48,13 @@ export default function Footer() {
       setEmail(''); // Réinitialiser le champ email
     } catch (error) {
       console.error('Erreur lors de l\'inscription à la newsletter:', error);
-      toast.error(error.message || 'Échec de l\'inscription. Veuillez réessayer.');
+      let errorMessage = 'Échec de l\'inscription. Veuillez réessayer.';
+      
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      
+      toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
