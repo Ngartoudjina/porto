@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -61,7 +61,7 @@ export default function Navbar() {
   }, [isMenuOpen]);
 
   // Enhanced animation variants
-  const navVariants = {
+  const navVariants : Variants = {
     hidden: { y: -120, opacity: 0 },
     visible: {
       y: 0,
@@ -76,7 +76,7 @@ export default function Navbar() {
     }
   };
 
-  const logoVariants = {
+  const logoVariants : Variants = {
     initial: { opacity: 0, scale: 0.7, rotate: -10 },
     animate: { 
       opacity: 1, 
@@ -98,7 +98,7 @@ export default function Navbar() {
     tap: { scale: 0.95 }
   };
 
-  const mobileMenuVariants = {
+  const mobileMenuVariants : Variants = {
     open: {
       x: 0,
       opacity: 1,
@@ -123,7 +123,7 @@ export default function Navbar() {
     }
   };
 
-  const mobileItemVariants = {
+  const mobileItemVariants : Variants = {
     open: { 
       opacity: 1, 
       x: 0, 
@@ -144,7 +144,7 @@ export default function Navbar() {
     }
   };
 
-  const desktopItemVariants = {
+  const desktopItemVariants : Variants = {
     initial: { opacity: 0, y: 30 },
     animate: (index: number) => ({
       opacity: 1,
@@ -165,7 +165,7 @@ export default function Navbar() {
     }
   };
 
-  const buttonVariants = {
+  const buttonVariants : Variants = {
     initial: { opacity: 0, x: 30, scale: 0.9 },
     animate: {
       opacity: 1,
@@ -191,7 +191,7 @@ export default function Navbar() {
   };
 
   // Enhanced hamburger animations
-  const hamburgerLineVariants = {
+  const hamburgerLineVariants : Variants = {
     top: {
       open: { 
         rotate: 45, 
