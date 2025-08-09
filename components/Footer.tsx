@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Mail, Linkedin, Github, Zap } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ export default function Footer() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Animation variants
-  const footerVariants = {
+  const footerVariants : Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
@@ -22,7 +22,7 @@ export default function Footer() {
     },
   };
 
-  const sectionVariants = {
+  const sectionVariants : Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
