@@ -11,15 +11,23 @@ const nextConfig = {
          },
        ],
      },
-   };
 
-   module.exports = {
-  experimental: {
-    swcMinify: true,
-    // Activer le cache persistant
-    swcFileReading: false,
-    workerThreads: true,
-  },
-}
+     module.exports = {
+    experimental: {
+      swcMinify: true,
+      // Activer le cache persistant
+      swcFileReading: false,
+      workerThreads: true,
+    },
+  }
+
+    compiler: {
+      experimental: {
+        plugins: [['superjson', {}]]
+      }
+    }
+   };
+   
+
 
 export default nextConfig;
