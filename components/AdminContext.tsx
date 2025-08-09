@@ -16,18 +16,22 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   const [isAdmin, setIsAdmin] = useState(false); // Initialisé à false
 
   useEffect(() => {
-    // Mettre à jour l'état après le montage côté client
+  // Vérifier que nous sommes côté client
+  if (typeof window !== 'undefined') {
     const adminStatus = localStorage.getItem("isAdmin") === "true";
     setIsAdmin(adminStatus);
-  }, []);
+  }
+}, []);
 
-  useEffect(() => {
+useEffect(() => {
+  if (typeof window !== 'undefined') {
     const handleStorageChange = () => {
       setIsAdmin(localStorage.getItem("isAdmin") === "true");
     };
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
+  }
+}, []);
 
   return (
     <AdminContext.Provider value={{ isAdmin, setIsAdmin }}>
