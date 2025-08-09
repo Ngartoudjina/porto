@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Code, Code2, Feather, Microchip, FunctionSquare } from 'lucide-react';
 
 export default function ProgrammingLanguages() {
@@ -50,7 +50,7 @@ export default function ProgrammingLanguages() {
     },
   ];
 
-  const containerVariants = {
+  const containerVariants : Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
@@ -62,7 +62,7 @@ export default function ProgrammingLanguages() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants : Variants = {
     hidden: { opacity: 0, y: 30, scale: 0.8 },
     visible: {
       opacity: 1,
@@ -75,7 +75,7 @@ export default function ProgrammingLanguages() {
     },
   };
 
-  const hoverVariants = {
+  const hoverVariants  = {
     scale: 1.05,
     y: -5,
     boxShadow: '0 10px 20px rgba(37, 99, 235, 0.2)',
@@ -114,7 +114,12 @@ export default function ProgrammingLanguages() {
             <motion.div
               key={lang.name}
               variants={itemVariants}
-              whileHover={hoverVariants}
+              whileHover={{
+                scale: 1.05,
+                y: -5,
+                boxShadow: '0 10px 20px rgba(37, 99, 235, 0.2)',
+                transition: { duration: 0.2 }
+              }}
               className="group cursor-pointer"
               aria-label={`Maîtrise de ${lang.name}`}
             >
