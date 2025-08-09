@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Microchip, Code, Smartphone, Code2, Wind, MousePointer } from 'lucide-react';
 
 export default function IDEs() {
@@ -57,7 +57,7 @@ export default function IDEs() {
     },
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
@@ -69,7 +69,7 @@ export default function IDEs() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants : Variants = {
     hidden: { opacity: 0, y: 30, scale: 0.8 },
     visible: {
       opacity: 1,
