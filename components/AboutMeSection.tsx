@@ -6,20 +6,20 @@ import { Zap, Factory, Thermometer, Flame, Battery, Wind } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function AboutMeSection() {
-  const skills = [
-    { name: "Renewable Energy Design", icon: Zap, color: "bg-emerald-500" },
-    { name: "Process Modeling", icon: Factory, color: "bg-blue-500" },
-    { name: "Thermodynamic Analysis", icon: Thermometer, color: "bg-amber-500" },
-    { name: "Energy Optimization", icon: Flame, color: "bg-orange-500" },
-    { name: "Sustainable Systems", icon: Battery, color: "bg-green-500" },
-    { name: "Wind Energy Solutions", icon: Wind, color: "bg-teal-500" },
+export default function SectionÀPropos() {
+  const compétences = [
+    { name: "Conception d'énergie renouvelable", icon: Zap, color: "bg-emerald-500" },
+    { name: "Modélisation de processus", icon: Factory, color: "bg-blue-500" },
+    { name: "Analyse thermodynamique", icon: Thermometer, color: "bg-amber-500" },
+    { name: "Optimisation énergétique", icon: Flame, color: "bg-orange-500" },
+    { name: "Systèmes durables", icon: Battery, color: "bg-green-500" },
+    { name: "Solutions d'énergie éolienne", icon: Wind, color: "bg-teal-500" },
   ];
 
-  const stats = [
-    { number: "10+", label: "Research Projects" },
+  const statistiques = [
+    { number: "10+", label: "Projets de recherche" },
     { number: "5+", label: "Publications" },
-    { number: "3+", label: "Years of Study" },
+    { number: "3+", label: "Années d'études" },
   ];
 
   // Animation variants
@@ -36,24 +36,47 @@ export default function AboutMeSection() {
     },
   };
 
-  const imageVariants = {
+  const imageVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.6, delay: 0.2 } },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      transition: { 
+        duration: 0.6, 
+        delay: 0.2,
+        ease: [0.16, 1, 0.3, 1] 
+      } 
+    },
   };
 
-  const skillVariants = {
+  const compétenceVariants: Variants = {
     hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      transition: { 
+        duration: 0.5, 
+        ease: [0.16, 1, 0.3, 1] // Using cubic bezier values instead of string
+      } 
+    },
   };
 
-  const statVariants = {
+  const statistiqueVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.4 } },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.5, 
+        delay: 0.4,
+        ease: [0.16, 1, 0.3, 1]
+      } 
+    },
   };
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-gray-900 relative overflow-hidden">
-      {/* Background Pattern - Amélioré pour mobile */}
+      {/* Motif de fond - Amélioré pour mobile */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-20 sm:w-32 h-20 sm:h-32 bg-emerald-300 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 sm:right-20 w-24 sm:w-40 h-24 sm:h-40 bg-blue-300 rounded-full blur-3xl"></div>
@@ -69,13 +92,13 @@ export default function AboutMeSection() {
         viewport={{ once: true, amount: 0.3 }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full max-w-7xl mx-auto">
-          {/* Left Side - Profile Image and Skills - Optimisé mobile */}
+          {/* Côté gauche - Image de profil et compétences - Optimisé mobile */}
           <motion.div
             className="flex justify-center order-1 lg:order-1"
             variants={imageVariants}
           >
             <div className="relative w-fit">
-              {/* Main Profile Circle - Responsive */}
+              {/* Cercle de profil principal - Responsive */}
               <div className="w-56 sm:w-64 md:w-72 lg:w-80 h-56 sm:h-64 md:h-72 lg:h-80 bg-gradient-to-br from-emerald-400 via-teal-400 to-blue-500 rounded-full flex items-center justify-center shadow-2xl ring-4 ring-white/20">
                 <img
                   src="/s1.jpg"
@@ -84,13 +107,13 @@ export default function AboutMeSection() {
                 />
               </div>
 
-              {/* Floating Skills Tags - Version mobile optimisée */}
+              {/* Étiquettes de compétences flottantes - Version mobile optimisée */}
               <div className="hidden sm:block">
-                {skills.map((skill, index) => (
+                {compétences.map((compétence, index) => (
                   <motion.div
-                    key={skill.name}
+                    key={compétence.name}
                     className="absolute"
-                    variants={skillVariants}
+                    variants={compétenceVariants}
                     initial="hidden"
                     animate="visible"
                     transition={{ delay: 0.3 + index * 0.1 }}
@@ -101,27 +124,27 @@ export default function AboutMeSection() {
                       right: index === 1 || index === 3 || index === 5 ? '-3rem' : 'auto',
                     }}
                   >
-                    <div className={`${skill.color} text-white px-3 py-2 rounded-full text-xs font-medium shadow-lg flex items-center gap-2 backdrop-blur-sm bg-opacity-90`}>
-                      <skill.icon className="w-4 h-4" aria-hidden="true" />
-                      <span className="hidden md:inline">{skill.name}</span>
+                    <div className={`${compétence.color} text-white px-3 py-2 rounded-full text-xs font-medium shadow-lg flex items-center gap-2 backdrop-blur-sm bg-opacity-90`}>
+                      <compétence.icon className="w-4 h-4" aria-hidden="true" />
+                      <span className="hidden md:inline">{compétence.name}</span>
                     </div>
                   </motion.div>
                 ))}
               </div>
 
-              {/* Skills pour mobile - Version simplifiée */}
+              {/* Compétences pour mobile - Version simplifiée */}
               <div className="sm:hidden absolute -bottom-8 left-1/2 transform -translate-x-1/2">
                 <div className="flex flex-wrap gap-2 justify-center max-w-xs">
-                  {skills.slice(0, 4).map((skill, index) => (
+                  {compétences.slice(0, 4).map((compétence, index) => (
                     <motion.div
-                      key={skill.name}
-                      variants={skillVariants}
+                      key={compétence.name}
+                      variants={compétenceVariants}
                       initial="hidden"
                       animate="visible"
                       transition={{ delay: 0.3 + index * 0.1 }}
                     >
-                      <div className={`${skill.color} text-white p-2 rounded-full shadow-lg backdrop-blur-sm bg-opacity-90`}>
-                        <skill.icon className="w-4 h-4" aria-hidden="true" />
+                      <div className={`${compétence.color} text-white p-2 rounded-full shadow-lg backdrop-blur-sm bg-opacity-90`}>
+                        <compétence.icon className="w-4 h-4" aria-hidden="true" />
                       </div>
                     </motion.div>
                   ))}
@@ -130,43 +153,43 @@ export default function AboutMeSection() {
             </div>
           </motion.div>
 
-          {/* Right Side - Content - Optimisé mobile */}
+          {/* Côté droit - Contenu - Optimisé mobile */}
           <motion.div className="text-white space-y-6 lg:space-y-8 order-2 lg:order-2 mt-12 sm:mt-0" variants={sectionVariants}>
-            {/* Header */}
+            {/* En-tête */}
             <div className="space-y-4 text-center lg:text-left">
               <motion.div
                 className="flex items-center gap-2 justify-center lg:justify-start"
-                variants={skillVariants}
+                variants={compétenceVariants}
               >
                 <Zap className="w-5 h-5 text-emerald-400" aria-hidden="true" />
-                <span className="text-gray-300 text-sm font-medium">— About Me</span>
+                <span className="text-gray-300 text-sm font-medium">— À propos de moi</span>
               </motion.div>
               
               <motion.h2
                 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight"
-                variants={skillVariants}
+                variants={compétenceVariants}
               >
-                Who is <span className="text-emerald-400">André SENOU</span>?
+                Qui est <span className="text-emerald-400">André SENOU</span> ?
               </motion.h2>
               
               <motion.p
                 className="text-gray-200 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0"
-                variants={skillVariants}
+                variants={compétenceVariants}
               >
-                I am an energy and process engineering student passionate about developing sustainable solutions through innovative research and design. My work focuses on renewable energy systems, process optimization, and thermodynamic analysis to address global energy challenges.
+                Je suis un étudiant en ingénierie énergétique et des procédés, passionné par le développement de solutions durables grâce à des recherches et des conceptions innovantes. Mon travail se concentre sur les systèmes d'énergie renouvelable, l'optimisation des processus et l'analyse thermodynamique pour répondre aux défis énergétiques mondiaux.
               </motion.p>
             </div>
 
-            {/* Stats - Responsive */}
+            {/* Statistiques - Responsive */}
             <motion.div
               className="grid grid-cols-3 gap-3 sm:gap-6 max-w-md mx-auto lg:mx-0"
               variants={sectionVariants}
             >
-              {stats.map((stat, index) => (
+              {statistiques.map((stat, index) => (
                 <motion.div
                   key={index}
                   className="text-center lg:text-left bg-white/5 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/10"
-                  variants={statVariants}
+                  variants={statistiqueVariants}
                   whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
                 >
                   <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-emerald-400 mb-1">
@@ -179,30 +202,30 @@ export default function AboutMeSection() {
               ))}
             </motion.div>
 
-            {/* Mobile Skills List - Visible seulement sur mobile */}
-            <motion.div className="sm:hidden" variants={skillVariants}>
+            {/* Liste des compétences pour mobile - Visible seulement sur mobile */}
+            <motion.div className="sm:hidden" variants={compétenceVariants}>
               <h3 className="text-lg font-semibold text-emerald-400 mb-3 text-center">Expertise</h3>
               <div className="grid grid-cols-2 gap-2">
-                {skills.map((skill, index) => (
-                  <div key={skill.name} className="flex items-center gap-2 bg-white/5 rounded-lg p-2 backdrop-blur-sm border border-white/10">
-                    <skill.icon className={`w-4 h-4 text-emerald-400`} />
-                    <span className="text-xs text-gray-200">{skill.name}</span>
+                {compétences.map((compétence, index) => (
+                  <div key={compétence.name} className="flex items-center gap-2 bg-white/5 rounded-lg p-2 backdrop-blur-sm border border-white/10">
+                    <compétence.icon className={`w-4 h-4 text-emerald-400`} />
+                    <span className="text-xs text-gray-200">{compétence.name}</span>
                   </div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Action Buttons - Responsive */}
+            {/* Boutons d'action - Responsive */}
             <motion.div
               className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 justify-center lg:justify-start"
-              variants={skillVariants}
+              variants={compétenceVariants}
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   asChild
                   className="w-full sm:w-auto flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 border-0"
                 >
-                  <Link href="/projets" aria-label="View my research">
+                  <Link href="/projets" aria-label="Voir mes recherches">
                     <Zap className="w-5 h-5" />
                     Voir mes projets
                   </Link>
