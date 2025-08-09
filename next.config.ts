@@ -11,11 +11,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    swcMinify: true,
-    swcFileReading: false,
-    workerThreads: true,
-  },
 };
 
 export default nextConfig;
