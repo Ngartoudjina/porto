@@ -177,7 +177,8 @@ const checkTitleExists = async (title: string, excludeId?: string, retryCount = 
   } catch (error) {
     console.error(`Title check attempt ${retryCount + 1} failed:`, error);
     
-    if (retryCount < maxRetries && error.message?.includes('timeout')) {
+    // Vérification de type pour l'erreur
+    if (retryCount < maxRetries && error instanceof Error && error.message?.includes('timeout')) {
       console.log(`Retrying title check... (${retryCount + 1}/${maxRetries})`);
       await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2s
       return checkTitleExists(title, excludeId, retryCount + 1);
