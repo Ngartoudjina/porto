@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, ExternalLink, Code, Zap } from 'lucide-react';
@@ -39,19 +39,19 @@ export default function Projects() {
   ];
 
   // Variantes pour les animations
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
         duration: 0.8,
-        ease: 'easeOut',
+        ease: "easeOut" as const,
       },
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { 
       opacity: 0, 
       y: 60,
@@ -65,12 +65,12 @@ export default function Projects() {
       rotateX: 0,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.25, 0.25, 0.75],
+        ease: [0.25, 0.25, 0.25, 0.75] as const,
       },
     },
   };
 
-  const cardHoverVariants = {
+  const cardHoverVariants: Variants = {
     hover: {
       scale: 1.05,
       y: -10,
@@ -78,34 +78,34 @@ export default function Projects() {
       boxShadow: '0 25px 50px rgba(37, 99, 235, 0.25)',
       transition: {
         duration: 0.4,
-        ease: 'easeOut',
+        ease: "easeOut" as const,
       },
     },
   };
 
-  const imageVariants = {
+  const imageVariants: Variants = {
     hover: {
       scale: 1.1,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: "easeOut" as const,
       },
     },
   };
 
-  const glowVariants = {
+  const glowVariants: Variants = {
     animate: {
       opacity: [0.4, 0.8, 0.4],
       scale: [1, 1.05, 1],
       transition: {
         duration: 3,
         repeat: Infinity,
-        ease: 'easeInOut',
+        ease: "easeInOut" as const,
       },
     },
   };
 
-  const floatingVariants = {
+  const floatingVariants: Variants = {
     animate: {
       y: [-15, 15, -15],
       x: [-8, 8, -8],
@@ -113,7 +113,7 @@ export default function Projects() {
       transition: {
         duration: 6,
         repeat: Infinity,
-        ease: 'easeInOut',
+        ease: "easeInOut" as const,
       },
     },
   };
