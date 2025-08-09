@@ -13,65 +13,69 @@ export default function Section1() {
 
   const slides = [
     {
-      title: "Innovative Energy Solutions",
-      subtitle: "Sustainable Engineering",
-      description: "Developing cutting-edge solutions for renewable energy systems",
+      title: "Solutions énergétiques innovantes",
+      subtitle: "Ingénierie durable",
+      description: "Développement de solutions de pointe pour les systèmes d'énergie renouvelable",
       bgColor: "from-blue-200 via-indigo-100 to-cyan-100"
     },
     {
-      title: "Process Optimization",
-      subtitle: "Engineering Excellence",
-      description: "Enhancing efficiency in industrial processes through advanced modeling",
+      title: "Optimisation des processus",
+      subtitle: "Excellence en ingénierie",
+      description: "Amélioration de l'efficacité des processus industriels grâce à une modélisation avancée",
       bgColor: "from-indigo-200 via-blue-100 to-teal-100"
     },
     {
-      title: "Sustainable Technologies",
-      subtitle: "Future-Ready Designs",
-      description: "Pioneering eco-friendly technologies for a greener tomorrow",
+      title: "Technologies durables",
+      subtitle: "Conceptions prêtes pour l'avenir",
+      description: "Pionnier des technologies écologiques pour un avenir plus vert",
       bgColor: "from-cyan-200 via-blue-100 to-indigo-100"
     }
   ];
 
   useEffect(() => {
+    // Définit un minuteur pour changer de diapositive toutes les 5 secondes
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
+    // Nettoie le minuteur lors du démontage du composant
     return () => clearInterval(timer);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  if (!email) {
-    toast.error("Please enter an email address");
-    return;
-  }
-
-  setIsLoading(true);
-  try {
-    const response = await fetch("/api/subscribe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
-
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.error || "Failed to subscribe");
+    e.preventDefault();
+    if (!email) {
+      toast.error("Veuillez entrer une adresse e-mail");
+      return;
     }
 
-    toast.success(`Thank you! You'll receive updates at ${email}`);
-    setEmail('');
-  } catch (error: unknown) {
-    toast.error(error instanceof Error ? error.message : "Failed to subscribe");
-  } finally {
-    setIsLoading(false);
-  }
+ setIsLoading(true);
+ try {
+   const response = await fetch("/api/subscribe", {
+     method: "POST",
+     headers: { "Content-Type": "application/json" },
+     body: JSON.stringify({ email }),
+   });
+
+   const data = await response.json();
+   if (!response.ok) {
+     throw new Error(data.error || "Échec de l'inscription");
+   }
+
+   toast.success(`Merci ! Vous recevrez des mises à jour à ${email}`);
+   setEmail('');
+ } catch (error: unknown) {
+   toast.error(error instanceof Error ? error.message : "Échec de l'inscription");
+ } finally {
+   setIsLoading(false);
+ }
 };
 
+  // Passe à la diapositive suivante
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
+  // Passe à la diapositive précédente
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
@@ -90,7 +94,7 @@ export default function Section1() {
         />
       </AnimatePresence>
 
-      {/* Floating scientific icons animation */}
+      {/* Animation des icônes scientifiques flottantes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[
           { Icon: Flame, color: "bg-orange-400", position: { top: "20%", left: "15%" }, size: "w-12 h-12" },
@@ -121,7 +125,7 @@ export default function Section1() {
 
       <div className="relative z-10 container mx-auto h-screen flex items-center">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center w-full max-w-5xl mx-auto">
-          {/* Left Content */}
+          {/* Contenu de gauche */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -136,7 +140,7 @@ export default function Section1() {
                 className="flex items-center gap-2 text-blue-600"
               >
                 <Zap className="w-5 h-5" aria-hidden="true" />
-                <span className="text-sm font-medium">Energy Innovation</span>
+                <span className="text-sm font-medium">Innovation énergétique</span>
               </motion.div>
               
               <motion.h1
@@ -169,7 +173,7 @@ export default function Section1() {
               </motion.p>
             </div>
 
-            {/* Email Signup Form */}
+            {/* Formulaire d'inscription par e-mail */}
             <motion.form
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -181,12 +185,12 @@ export default function Section1() {
                 <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" aria-hidden="true" />
                 <Input
                   type="email"
-                  placeholder="Your email address"
+                  placeholder="Votre adresse e-mail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-12 pr-4 py-4 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300"
                   required
-                  aria-label="Email address"
+                  aria-label="Adresse e-mail"
                   disabled={isLoading}
                 />
               </div>
@@ -201,12 +205,12 @@ export default function Section1() {
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                   </svg>
                 ) : (
-                  "Stay Updated"
+                  "Rester informé"
                 )}
               </Button>
             </motion.form>
 
-            {/* Trust indicators */}
+            {/* Indicateurs de confiance */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -215,20 +219,20 @@ export default function Section1() {
             >
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span>Research-Driven</span>
+                <span>Basé sur la recherche</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span>Innovative Approach</span>
+                <span>Approche innovante</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span>Collaborative Projects</span>
+                <span>Projets collaboratifs</span>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Content - Image Display */}
+          {/* Contenu de droite - Affichage de l'image */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -269,7 +273,7 @@ export default function Section1() {
               >
                 <img
                   src="/a4.jpg"
-                  alt="Scientific Portfolio"
+                  alt="Portefeuille scientifique"
                   className="w-48 h-48 sm:w-64 sm:h-64 object-cover rounded-full shadow-2xl"
                 />
               </motion.div>
@@ -284,7 +288,7 @@ export default function Section1() {
           whileTap={{ scale: 0.9 }}
           onClick={prevSlide}
           className="p-3 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full transition-all duration-300"
-          aria-label="Previous slide"
+          aria-label="Diapositive précédente"
         >
           <ChevronLeft className="w-5 h-5 text-gray-700" />
         </motion.button>
@@ -300,7 +304,7 @@ export default function Section1() {
                   ? 'bg-blue-500 scale-110' 
                   : 'bg-white/40 hover:bg-white/60'
               }`}
-              aria-label={`Go to slide ${index + 1}`}
+              aria-label={`Aller à la diapositive ${index + 1}`}
             />
           ))}
         </div>
@@ -310,7 +314,7 @@ export default function Section1() {
           whileTap={{ scale: 0.9 }}
           onClick={nextSlide}
           className="p-3 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full transition-all duration-300"
-          aria-label="Next slide"
+          aria-label="Diapositive suivante"
         >
           <ChevronRight className="w-5 h-5 text-gray-700" />
         </motion.button>
