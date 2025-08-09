@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants  } from "framer-motion";
 import { X, Key, Shield, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -146,7 +146,7 @@ export function AdminButton() {
 
   if (!isMounted || !isAdmin) return null; // Ne rend rien tant que non monté ou non admin
 
-  const buttonVariants = {
+  const buttonVariants: Variants  = {
     initial: { 
       opacity: 0, 
       y: 20,
@@ -180,7 +180,7 @@ export function AdminButton() {
     }
   };
 
-  const iconVariants = {
+  const iconVariants: Variants  = {
     initial: { rotate: 0 },
     hover: { 
       rotate: 15,
@@ -194,7 +194,7 @@ export function AdminButton() {
     }
   };
 
-  const expandedVariants = {
+  const expandedVariants: Variants  = {
     collapsed: { 
       width: 56,
       transition: { 
@@ -211,7 +211,7 @@ export function AdminButton() {
     }
   };
 
-  const textVariants = {
+  const textVariants: Variants  = {
     hidden: { 
       opacity: 0,
       x: -10,
@@ -227,14 +227,14 @@ export function AdminButton() {
     }
   };
 
-  const glowVariants = {
+  const glowVariants: Variants = {
     initial: { opacity: 0, scale: 0.8 },
     hover: { 
       opacity: 0.3, 
       scale: 1.2,
       transition: {
         duration: 0.3,
-        ease: "easeOut"
+        ease: [0.16, 1, 0.3, 1] // Using cubic bezier values instead of string
       }
     }
   };
