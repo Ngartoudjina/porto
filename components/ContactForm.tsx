@@ -54,7 +54,7 @@ export default function ContactForm() {
     },
   ];
 
-  const interestOptions : = [
+  const interestOptions  = [
     "Renewable Energy Consulting",
     "Process Simulation",
     "Research Collaboration",
