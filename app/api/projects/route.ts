@@ -4,6 +4,11 @@ import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, getDoc } from "
 import cloudinary from "@/lib/cloudinary";
 import { Project } from "@/lib/types";
 
+interface CloudinaryUploadResponse {
+  secure_url: string;
+  // Ajoutez d'autres propriétés si nécessaire
+}
+
 // Liste des logiciels disponibles
 const AVAILABLE_SOFTWARES = [
   "Matlab",
@@ -61,7 +66,7 @@ export async function POST(request: Request) {
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
     const image = formData.get("image") as File | null;
-    const softwares = formData.get("softwares") as string; // Chaîne JSON
+    const softwares = formData.get("softwares") as string;
 
     // Valider les logiciels
     let parsedSoftwares: string[] = [];
@@ -75,7 +80,7 @@ export async function POST(request: Request) {
     let imageUrl: string | undefined;
     if (image) {
       const buffer = Buffer.from(await image.arrayBuffer());
-      const uploadResult = await new Promise((resolve, reject) => {
+      const uploadResult = await new Promise<CloudinaryUploadResponse>((resolve, reject) => {
         cloudinary.uploader
           .upload_stream(
             {
@@ -87,12 +92,19 @@ export async function POST(request: Request) {
               ],
             },
             (error, result) => {
-              if (error) reject(error);
-              else resolve(result);
+              if (error) {
+                reject(error);
+              } else if (!result) {
+                reject(new Error("No result from Cloudinary"));
+              } else {
+                resolve({
+                  secure_url: result.secure_url
+                });
+              }
             }
           )
           .end(buffer);
-      }) as { secure_url: string };
+      });
       imageUrl = uploadResult.secure_url;
     }
 
@@ -101,11 +113,12 @@ export async function POST(request: Request) {
       description,
       image: imageUrl,
       softwares: parsedSoftwares,
-      createdAt: new Date().toISOString(), // Ajouter createdAt
-      updatedAt: new Date().toISOString(), // Ajouter updatedAt
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
+    
     const docRef = await addDoc(collection(db, "projects"), projectData);
-    console.log("Project created:", { id: docRef.id, ...projectData }); // Journal pour débogage
+    console.log("Project created:", { id: docRef.id, ...projectData });
     return NextResponse.json({ success: true, data: { id: docRef.id, ...projectData } });
   } catch (error) {
     console.error("POST /api/projects error:", error);
@@ -132,9 +145,10 @@ export async function PUT(request: Request) {
     }
 
     let imageUrl: string | undefined;
+    // Dans la fonction PUT
     if (image instanceof File) {
       const buffer = Buffer.from(await image.arrayBuffer());
-      const uploadResult = await new Promise((resolve, reject) => {
+      const uploadResult = await new Promise<CloudinaryUploadResponse>((resolve, reject) => {
         cloudinary.uploader
           .upload_stream(
             {
@@ -146,22 +160,20 @@ export async function PUT(request: Request) {
               ],
             },
             (error, result) => {
-              if (error) reject(error);
-              else resolve(result);
+              if (error) {
+                reject(error);
+              } else if (!result) {
+                reject(new Error("No result from Cloudinary"));
+              } else {
+                resolve({
+                  secure_url: result.secure_url
+                });
+              }
             }
           )
           .end(buffer);
-      }) as { secure_url: string };
+      });
       imageUrl = uploadResult.secure_url;
-
-      // Supprimer l'ancienne image si elle existe
-      const projectDoc = await getDoc(doc(db, "projects", id));
-      if (projectDoc.exists() && projectDoc.data().image) {
-        const publicId = projectDoc.data().image.split("/").pop()?.split(".")[0];
-        if (publicId) {
-          await cloudinary.uploader.destroy(`projects/${publicId}`, { resource_type: "image" });
-        }
-      }
     } else {
       imageUrl = image as string | undefined;
     }
