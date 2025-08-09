@@ -20,8 +20,16 @@ export interface Media {
   description: string;
   src: string;
   category: string;
-  duration: string;
-  views: string;
+  duration: number; // Changé de string à number
+  views: number;    // Changé de string à number
+  // Ajoutez les propriétés manquantes qui apparaissent dans votre code
+  publicId?: string;
+  width?: number;
+  height?: number;
+  format?: string;
+  fileSize?: number;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Vitae {

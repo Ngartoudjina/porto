@@ -194,16 +194,29 @@ export async function GET() {
     const mediaCol = collection(db, "media");
     const mediaSnapshot = await getDocs(mediaCol);
     
-    const media = mediaSnapshot.docs.map((docSnapshot) => ({
-      id: docSnapshot.id,
-      ...docSnapshot.data(),
-      createdAt: docSnapshot.data().createdAt?.toDate ? 
-        docSnapshot.data().createdAt.toDate().toISOString() : 
-        docSnapshot.data().createdAt || null,
-      updatedAt: docSnapshot.data().updatedAt?.toDate ? 
-        docSnapshot.data().updatedAt.toDate().toISOString() : 
-        docSnapshot.data().updatedAt || null,
-    } as Media));
+    const media = mediaSnapshot.docs.map((docSnapshot) => {
+      const data = docSnapshot.data();
+      return {
+        id: docSnapshot.id,
+        title: data.title || '',
+        description: data.description || '',
+        src: data.src || '',
+        category: data.category || 'general',
+        duration: Number(data.duration) || 0,
+        views: Number(data.views) || 0,
+        publicId: data.publicId || undefined,
+        width: data.width || undefined,
+        height: data.height || undefined,
+        format: data.format || undefined,
+        fileSize: data.fileSize || undefined,
+        createdAt: data.createdAt?.toDate ? 
+          data.createdAt.toDate().toISOString() : 
+          data.createdAt || undefined,
+        updatedAt: data.updatedAt?.toDate ? 
+          data.updatedAt.toDate().toISOString() : 
+          data.updatedAt || undefined,
+      } as Media;
+    });
     
     return NextResponse.json({ success: true, data: media });
   } catch (error) {
