@@ -68,15 +68,17 @@ export default function DayInLife() {
     },
   };
 
-  const hoverVariants = {
+  const hoverVariants: Variants = {
+  hover: {
     scale: 1.05,
     y: -5,
     boxShadow: '0 10px 20px rgba(37, 99, 235, 0.2)',
     transition: {
       duration: 0.2,
-      ease: 'easeOut',
-    },
-  };
+      ease: [0.16, 1, 0.3, 1]
+    }
+  }
+};
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 flex items-center justify-center p-4 sm:p-6 md:p-8">
