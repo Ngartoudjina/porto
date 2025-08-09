@@ -499,18 +499,18 @@ export default function AdminDashboard() {
   };
 
   const handleEditMedia = (mediaItem: Media) => {
-    setMediaForm({
-      title: mediaItem.title,
-      description: mediaItem.description,
-      src: mediaItem.src,
-      category: mediaItem.category,
-      duration: mediaItem.duration,
-      views: mediaItem.views,
-    });
-    setEditingId(mediaItem.id);
-    setActiveSection("media");
-    setIsMenuOpen(false);
-  };
+  setMediaForm({
+    title: mediaItem.title,
+    description: mediaItem.description,
+    src: mediaItem.src,
+    category: mediaItem.category,
+    duration: mediaItem.duration.toString(), // Convertir en string si nécessaire
+    views: mediaItem.views.toString(),       // Convertir en string si nécessaire
+  });
+  setEditingId(mediaItem.id);
+  setActiveSection("media");
+  setIsMenuOpen(false);
+};
 
   const handleEditVitae = (vitaeItem: Vitae) => {
     setVitaeForm({ name: vitaeItem.name, file: vitaeItem.file });
