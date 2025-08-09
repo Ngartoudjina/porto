@@ -48,7 +48,7 @@ export function AdminAccessModal() {
   const { setIsAdmin } = useContext(AdminContext)!;
   const correctAnswer = "iletaitunefois...";
 
-  uuseEffect(() => {
+  useEffect(() => {
   // Vérifier si l'utilisateur est admin après le montage
   if (typeof window !== 'undefined') {
     const isAdmin = localStorage.getItem("isAdmin") === "true";
