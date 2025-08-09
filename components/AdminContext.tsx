@@ -48,22 +48,26 @@ export function AdminAccessModal() {
   const { setIsAdmin } = useContext(AdminContext)!;
   const correctAnswer = "iletaitunefois...";
 
-  useEffect(() => {
-    // Vérifier si l'utilisateur est admin après le montage
+  uuseEffect(() => {
+  // Vérifier si l'utilisateur est admin après le montage
+  if (typeof window !== 'undefined') {
     const isAdmin = localStorage.getItem("isAdmin") === "true";
     if (!isAdmin) {
-      setIsOpen(true); // Ouvre la modale si l'utilisateur n'est pas admin
+      setIsOpen(true);
     }
-  }, []);
+  }
+}, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (answer === correctAnswer) {
+  if (answer === correctAnswer) {
+    if (typeof window !== 'undefined') {
       localStorage.setItem("isAdmin", "true");
-      setIsAdmin(true);
-      setIsOpen(false);
-      setError("");
-    } else {
+    }
+    setIsAdmin(true);
+    setIsOpen(false);
+    setError("");
+  } else {
       setError("Réponse incorrecte. Redirection vers la page d'accueil.");
       setTimeout(() => {
         setIsOpen(false);

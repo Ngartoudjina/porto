@@ -11,11 +11,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  compiler: {
-    experimental: {
-      plugins: [["superjson", {}]],
-    },
-  },
   experimental: {
     swcMinify: true,
     swcFileReading: false,
