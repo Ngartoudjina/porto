@@ -191,48 +191,26 @@ export default function Navbar() {
   };
 
   // Enhanced hamburger animations
-  const hamburgerLineVariants : Variants = {
-    top: {
-      open: { 
-        rotate: 45, 
-        y: 8, 
-        backgroundColor: "#dc2626",
-        transition: { duration: 0.3, ease: [0.23, 1, 0.320, 1] }
-      },
-      closed: { 
-        rotate: 0, 
-        y: 0, 
-        backgroundColor: "#374151",
-        transition: { duration: 0.3, ease: [0.23, 1, 0.320, 1] }
-      }
-    },
-    middle: {
-      open: { 
-        opacity: 0, 
-        scale: 0,
-        transition: { duration: 0.2, ease: "easeOut" }
-      },
-      closed: { 
-        opacity: 1, 
-        scale: 1,
-        transition: { duration: 0.2, delay: 0.1, ease: "easeOut" }
-      }
-    },
-    bottom: {
-      open: { 
-        rotate: -45, 
-        y: -8, 
-        backgroundColor: "#dc2626",
-        transition: { duration: 0.3, ease: [0.23, 1, 0.320, 1] }
-      },
-      closed: { 
-        rotate: 0, 
-        y: 0, 
-        backgroundColor: "#374151",
-        transition: { duration: 0.3, ease: [0.23, 1, 0.320, 1] }
-      }
+  const hamburgerLineVariants: Variants = {
+  open: (i: number) => ({
+    rotate: i === 0 ? 45 : i === 2 ? -45 : 0,
+    y: i === 0 ? 8 : i === 2 ? -8 : 0,
+    opacity: i === 1 ? 0 : 1,
+    backgroundColor: "#dc2626",
+    transition: { duration: 0.3, ease: [0.23, 1, 0.320, 1] }
+  }),
+  closed: (i: number) => ({
+    rotate: 0,
+    y: 0,
+    opacity: 1,
+    backgroundColor: "#374151",
+    transition: { 
+      duration: i === 1 ? 0.2 : 0.3, 
+      delay: i === 1 ? 0.1 : 0,
+      ease: i === 1 ? "easeOut" : [0.23, 1, 0.320, 1] 
     }
-  };
+  })
+};
 
   return (
     <>
@@ -345,22 +323,16 @@ export default function Navbar() {
                 transition={{ duration: 0.2 }}
               />
               <div className="w-7 h-7 flex flex-col justify-center items-center gap-1.5 relative z-10">
-                <motion.span
-                  variants={hamburgerLineVariants.top}
-                  animate={isMenuOpen ? "open" : "closed"}
-                  className="w-7 h-0.5 bg-gray-700 rounded-full"
-                />
-                <motion.span
-                  variants={hamburgerLineVariants.middle}
-                  animate={isMenuOpen ? "open" : "closed"}
-                  className="w-7 h-0.5 bg-gray-700 rounded-full"
-                />
-                <motion.span
-                  variants={hamburgerLineVariants.bottom}
-                  animate={isMenuOpen ? "open" : "closed"}
-                  className="w-7 h-0.5 bg-gray-700 rounded-full"
-                />
-              </div>
+  {[0, 1, 2].map((i) => (
+    <motion.span
+      key={i}
+      custom={i}
+      variants={hamburgerLineVariants}
+      animate={isMenuOpen ? "open" : "closed"}
+      className="w-7 h-0.5 bg-gray-700 rounded-full"
+    />
+  ))}
+</div>
             </motion.button>
           </div>
         </div>
